@@ -1,0 +1,45 @@
+.StepsTableRow {
+  display: flex;
+}
+
+.StepsTableRow span {
+  display: inline-block;
+  text-align: left;
+}
+
+.StepsTableRow span:first-child {
+  width: 51%;
+}
+
+.StepsTableRow span:nth-child(2) {
+  width: 30%;
+}
+
+.StepsTableRow__btns {
+  display: flex;
+  gap: 5px;
+}
+
+.StepsTableRow__btns button{
+  background-size: 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  background-color: white;
+
+  width: 30px;
+  height: 20px;
+  padding: 0;
+}
+
+.StepsTableRow__btns-edit {
+  background-image: url('../../../../icons/2956842.png');
+
+  transform: rotate(270deg);
+}
+ 
+.StepsTableRow__btns-delete {
+  background-image: url('../../../../icons/Black-X-Letter-PNG-Image.png');
+
+  background-color: white;
+}

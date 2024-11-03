@@ -1,0 +1,25 @@
+.StepsTable {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.StepsTable__header {
+  display: flex;
+  justify-content: space-around;
+
+  font-size: 18px;
+}
+
+.StepsTable__body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  padding: 20px;
+
+  border: 1px solid black;
+  border-radius: 20px;
+
+  box-sizing: border-box;
+}

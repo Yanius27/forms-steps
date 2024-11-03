@@ -12,23 +12,23 @@
 }
 
 .StepsTableRow span:nth-child(2) {
-  width: 30%;
+  width: 32%;
 }
 
 .StepsTableRow__btns {
   display: flex;
-  gap: 5px;
+  gap: 15px;
 }
 
 .StepsTableRow__btns button{
-  background-size: 15px;
   background-position: center;
   background-repeat: no-repeat;
+  background-size: 18px;
 
   background-color: white;
 
-  width: 30px;
-  height: 20px;
+  width: 20px;
+  height: 100%;
   padding: 0;
 }
 

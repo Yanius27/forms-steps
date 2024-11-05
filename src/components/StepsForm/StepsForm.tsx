@@ -1,7 +1,6 @@
 import {useState} from 'react';
 
-import {IStepsTableRowProps} from '../StepsTable/views/StepsTableRow/StepsTableRow';
-import StepsTable from '../StepsTable';
+import setToLocalStorage from '../../utils/setToLocalStorage';
 
 import './StepsForm.css';
 
@@ -10,24 +9,17 @@ export interface ITableRow {
   distance: string,
 }
 
-export default function StepsForm() {
-  const data = getFromLocalStorage();
-  
-  const [tableData, setTableData] = useState<ITableRow[]>(data || []);
+interface IStepsFormProps {
+  setValue: React.Dispatch<React.SetStateAction<ITableRow[]>>
+}
+
+export default function StepsForm(props: IStepsFormProps) {
+  const {setValue} = props;
 
   const [formData, setFormData] = useState({
     date: '',
     distance: '',
   });
-
-  const setToLocalStorage = (data: ITableRow[]) => {
-    localStorage.setItem('tableData', JSON.stringify(data));
-  };
-
-  function getFromLocalStorage(): IStepsTableRowProps[] | null {
-    const result = localStorage.getItem('tableData');
-    return result ? JSON.parse(result) : null;
-  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,7 +30,7 @@ export default function StepsForm() {
         distance: formData.distance,
       };
   
-      setTableData(prevData => {
+      setValue(prevData => {
         const updatedData = [...prevData, newRow];
         setToLocalStorage(updatedData);
         return updatedData;
@@ -57,15 +49,6 @@ export default function StepsForm() {
     }));
   };
 
-  const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const currentRow = e.currentTarget.closest('.StepsTableRow');
-    const currentDate = currentRow?.childNodes[0].textContent;
-
-    const filteredRow = data?.filter(row => row.date !== currentDate);
-    setTableData(filteredRow || []);
-    setToLocalStorage(filteredRow || []);
-  };
-
   return (
     <div className="StepsForm">
       <form onSubmit={handleSubmit} >
@@ -73,6 +56,7 @@ export default function StepsForm() {
           <span>Дата (ДД.ММ.ГГ)</span>
           <input
             name='date' 
+            type='date'
             value={formData.date}
             onChange={handleChange}
           />
@@ -87,12 +71,6 @@ export default function StepsForm() {
         </label>
         <button type='submit'>OK</button>
       </form>
-      {tableData && (
-        <StepsTable
-          tableData={tableData} 
-          onDeleteClick={handleDelete}
-        />
-      )}
     </div>
   );
 }

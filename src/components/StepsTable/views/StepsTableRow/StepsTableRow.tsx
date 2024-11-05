@@ -1,3 +1,5 @@
+import formateDate from '../../../../utils/formateDate';
+
 import './StepsTableRow.css';
 
 export interface IStepsTableRowProps {
@@ -11,7 +13,7 @@ export default function StepsTableRow(props: IStepsTableRowProps) {
 
   return (
     <div className="StepsTableRow">
-      <span className='StepsTableRow__date'>{date}</span>
+      <span className='StepsTableRow__date'>{formateDate(date)}</span>
       <span className='StepsTableRow__distance'>{distance}</span>
       <div className="StepsTableRow__btns">
         <button className='StepsTableRow__btns-edit' />
